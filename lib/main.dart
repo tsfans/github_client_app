@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:github_client_app/common/global.dart';
+import 'package:github_client_app/l10n/localization_intl.dart';
+import 'package:github_client_app/routes/home_page.dart';
+import 'package:github_client_app/routes/language.dart';
+import 'package:github_client_app/routes/login.dart';
+import 'package:github_client_app/routes/themes.dart';
+import 'package:github_client_app/states/locale_model.dart';
+import 'package:github_client_app/states/theme_model.dart';
+import 'package:github_client_app/states/user_model.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  Global.init().then((e) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,28 +21,53 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeModel()),
+        ChangeNotifierProvider(create: (_) => UserModel()),
+        ChangeNotifierProvider(create: (_) => LocaleModel()),
+      ],
+      child: Consumer2<ThemeModel, LocaleModel>(
+        builder: (BuildContext ctx, themeModel, localeModel, child) {
+          return MaterialApp(
+            home: const HomeRoute(),
+            theme: ThemeData(primarySwatch: themeModel.theme),
+            onGenerateTitle: (context) {
+              return AppLocalizations.of(context).title;
+            },
+            locale: localeModel.getLocale(),
+            supportedLocales: const [
+              Locale('zh', 'CN'),
+              Locale('en', 'US'),
+            ],
+            localeResolutionCallback: (locale, supportedLocales) {
+              if (localeModel.getLocale() != null) {
+                return localeModel.getLocale();
+              } else {
+                Locale loc;
+                if (supportedLocales.contains(locale)) {
+                  loc = locale!;
+                } else {
+                  // default to english
+                  loc = const Locale('en', 'US');
+                }
+                return loc;
+              }
+            },
+            localizationsDelegates: const [
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              AppLocalizationsDelegate(),
+            ],
+            routes: {
+              "/home": (ctx) => const HomeRoute(),
+              "/login": (ctx) => const LoginRoute(),
+              "/language": (ctx) => const LanguageRoute(),
+              "/themes": (ctx) => const ThemeChangeRoute(),
+            },
+          );
+        },
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

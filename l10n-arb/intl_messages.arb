@@ -1,0 +1,80 @@
+{
+  "@@last_modified": "2024-05-11T11:46:45.590838",
+  "title": "GitHub Client",
+  "@title": {
+    "description": "app title",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "home": "App Home",
+  "@home": {
+    "description": "app home",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "login": "login",
+  "@login": {
+    "description": "login",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "noRepo": "no more reository",
+  "@noRepo": {
+    "description": "no more reository",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "noRepoDesc": "no description",
+  "@noRepoDesc": {
+    "description": "no description",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "theme": "theme",
+  "@theme": {
+    "description": "theme",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "language": "language",
+  "@language": {
+    "description": "language",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logout": "logout",
+  "@logout": {
+    "description": "logout",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logoutTip": "logoutTip",
+  "@logoutTip": {
+    "description": "logoutTip",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "cancel": "cancel",
+  "@cancel": {
+    "description": "cancel",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "yes": "yes",
+  "@yes": {
+    "description": "yes",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  }
+}
