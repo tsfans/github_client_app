@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_client_app/common/github.dart';
-import 'package:github_client_app/l10n/localization_intl.dart';
+import 'package:github_client_app/common/icons.dart';
 import 'package:github_client_app/models/repo.dart';
+import 'package:github_client_app/states/theme_model.dart';
 import 'package:github_client_app/states/user_model.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +12,7 @@ class HomeRoute extends StatefulWidget {
   const HomeRoute({super.key});
 
   @override
-  State createState() => _HomeRouteState();
+  State<HomeRoute> createState() => _HomeRouteState();
 }
 
 class _HomeRouteState extends State<HomeRoute> {
@@ -107,8 +109,8 @@ class MyDrawer extends StatelessWidget {
   }
 
   Widget _buildHeader() {
-    return Consumer<UserModel>(
-        builder: (BuildContext ctx, UserModel user, Widget? child) {
+    return Consumer2<ThemeModel, UserModel>(builder:
+        (BuildContext ctx, ThemeModel theme, UserModel user, Widget? child) {
       return GestureDetector(
         onTap: () {
           if (user.unLogin) {
@@ -116,7 +118,7 @@ class MyDrawer extends StatelessWidget {
           }
         },
         child: Container(
-          color: Theme.of(ctx).primaryColor,
+          color: theme.theme,
           padding: const EdgeInsets.only(top: 40, bottom: 20),
           child: Row(
             children: [
@@ -151,7 +153,7 @@ class MyDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.color_lens),
               title: Text(appLoc.theme),
-              onTap: () => Navigator.of(ctx).pushNamed("theme"),
+              onTap: () => Navigator.of(ctx).pushNamed("themes"),
             ),
             ListTile(
               leading: const Icon(Icons.language),
@@ -291,7 +293,7 @@ class _RepoItemState extends State<RepoItem> {
                   const Icon(Icons.info_outline),
                   Text(
                       " ${widget.repo.openIssuesCount.toString().padRight(paddingWidth)}"),
-                  const ImageIcon(AssetImage("imgs/fork.png")),
+                  const Icon(MyIcons.fork),
                   Text(
                       " ${(widget.repo.forksCount).toString().padRight(paddingWidth)}"),
                 ];

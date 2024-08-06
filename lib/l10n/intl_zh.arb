@@ -1,0 +1,129 @@
+{
+  "@@last_modified": "2024-05-14T15:55:33.967290",
+  "title": "GitHub应用",
+  "@title": {
+    "description": "app title",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "home": "应用主页",
+  "@home": {
+    "description": "app home",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "login": "登录",
+  "@login": {
+    "description": "login",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logining": "登录中",
+  "@logining": {
+    "description": "logining",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "noRepo": "没有更多仓库了",
+  "@noRepo": {
+    "description": "no more reository",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "noRepoDesc": "",
+  "@noRepoDesc": {
+    "description": "no repo description",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "theme": "主题",
+  "@theme": {
+    "description": "theme",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "language": "语言",
+  "@language": {
+    "description": "language",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "auto": "跟随系统",
+  "@auto": {
+    "description": "auto",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logout": "登出",
+  "@logout": {
+    "description": "logout",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logoutTip": "登出提示",
+  "@logoutTip": {
+    "description": "logoutTip",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "cancel": "取消",
+  "@cancel": {
+    "description": "cancel",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "yes": "确认",
+  "@yes": {
+    "description": "yes",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "username": "用户名",
+  "@username": {
+    "description": "username",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "password": "密码",
+  "@password": {
+    "description": "password",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "usernameRequired": "用户名必填",
+  "@usernameRequired": {
+    "description": "usernameRequired",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "passwordRequired": "密码必填",
+  "@passwordRequired": {
+    "description": "passwordRequired",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "usernameOrPasswordWrong": "用户名或密码错误",
+  "@usernameOrPasswordWrong": {
+    "description": "usernameOrPasswordWrong",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  }
+}

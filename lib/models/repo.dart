@@ -54,7 +54,22 @@ class Repo {
   });
 
   static Repo empty(String name) {
-    return Repo.fromJson({"name": name});
+    return Repo(
+      id: 0,
+      name: name,
+      fullName: "",
+      owner: User.empty(name),
+      private: false,
+      fork: false,
+      forksCount: 0,
+      stargazersCount: 0,
+      size: 0,
+      defaultBranch: "main",
+      openIssuesCount: 0,
+      pushedAt: DateTime.now(),
+      createdAt: DateTime.now(),
+      updatedAt: DateTime.now(),
+    );
   }
 
   factory Repo.fromJson(Map<String, dynamic> json) => Repo(
@@ -62,7 +77,7 @@ class Repo {
         name: json["name"],
         fullName: json["full_name"],
         owner: User.fromJson(json["owner"]),
-        parent: Repo.fromJson(json["parent"]),
+        parent: json["parent"] != null ? Repo.fromJson(json["parent"]) : null,
         private: json["private"],
         description: json["description"],
         fork: json["fork"],
@@ -76,7 +91,8 @@ class Repo {
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         subscribersCount: json["subscribers_count"],
-        license: License.fromJson(json["license"]),
+        license:
+            json["license"] != null ? License.fromJson(json["license"]) : null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -118,11 +134,11 @@ class License {
   });
 
   factory License.fromJson(Map<String, dynamic> json) => License(
-        key: json["key"],
-        name: json["name"],
-        spdxId: json["spdx_id"],
-        url: json["url"],
-        nodeId: json["node_id"],
+        key: json["key"] ?? "",
+        name: json["name"] ?? "",
+        spdxId: json["spdx_id"] ?? "",
+        url: json["url"] ?? "",
+        nodeId: json["node_id"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {

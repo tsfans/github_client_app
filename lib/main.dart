@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:github_client_app/common/global.dart';
-import 'package:github_client_app/l10n/localization_intl.dart';
 import 'package:github_client_app/routes/home_page.dart';
 import 'package:github_client_app/routes/language.dart';
 import 'package:github_client_app/routes/login.dart';
@@ -36,34 +35,28 @@ class MyApp extends StatelessWidget {
               return AppLocalizations.of(context).title;
             },
             locale: localeModel.getLocale(),
-            supportedLocales: const [
-              Locale('zh', 'CN'),
-              Locale('en', 'US'),
-            ],
+            supportedLocales: AppLocalizations.supportedLocales,
             localeResolutionCallback: (locale, supportedLocales) {
               if (localeModel.getLocale() != null) {
                 return localeModel.getLocale();
-              } else {
-                Locale loc;
-                if (supportedLocales.contains(locale)) {
-                  loc = locale!;
-                } else {
-                  // default to english
-                  loc = const Locale('en', 'US');
-                }
-                return loc;
               }
+              Locale loc = const Locale('en', 'US');
+              if (locale != null) {
+                for (var element in supportedLocales) {
+                  if (element.languageCode == locale.languageCode) {
+                    loc = locale;
+                    break;
+                  }
+                }
+              }
+              return loc;
             },
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              AppLocalizationsDelegate(),
-            ],
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
             routes: {
-              "/home": (ctx) => const HomeRoute(),
-              "/login": (ctx) => const LoginRoute(),
-              "/language": (ctx) => const LanguageRoute(),
-              "/themes": (ctx) => const ThemeChangeRoute(),
+              "home": (ctx) => const HomeRoute(),
+              "login": (ctx) => const LoginRoute(),
+              "language": (ctx) => const LanguageRoute(),
+              "themes": (ctx) => const ThemeChangeRoute(),
             },
           );
         },

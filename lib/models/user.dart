@@ -19,13 +19,13 @@ class User {
   String? email;
   bool? hireable;
   String? bio;
-  int publicRepos;
-  int followers;
-  int following;
-  DateTime createdAt;
-  DateTime updatedAt;
-  int totalPrivateRepos;
-  int ownedPrivateRepos;
+  num? publicRepos;
+  num? followers;
+  num? following;
+  DateTime? createdAt;
+  DateTime? updatedAt;
+  num? totalPrivateRepos;
+  num? ownedPrivateRepos;
 
   User({
     required this.login,
@@ -38,14 +38,28 @@ class User {
     this.email,
     this.hireable,
     this.bio,
-    required this.publicRepos,
-    required this.followers,
-    required this.following,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.totalPrivateRepos,
-    required this.ownedPrivateRepos,
+    this.publicRepos,
+    this.followers,
+    this.following,
+    this.createdAt,
+    this.updatedAt,
+    this.totalPrivateRepos,
+    this.ownedPrivateRepos,
   });
+
+  static User empty(String name) {
+    return User(
+        login: name,
+        avatarUrl: "",
+        type: "",
+        publicRepos: 0,
+        followers: 0,
+        following: 0,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        totalPrivateRepos: 0,
+        ownedPrivateRepos: 0);
+  }
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         login: json["login"],
@@ -61,8 +75,12 @@ class User {
         publicRepos: json["public_repos"],
         followers: json["followers"],
         following: json["following"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
+        createdAt: json["created_at"] != null
+            ? DateTime.parse(json["created_at"])
+            : null,
+        updatedAt: json["updated_at"] != null
+            ? DateTime.parse(json["updated_at"])
+            : null,
         totalPrivateRepos: json["total_private_repos"],
         ownedPrivateRepos: json["owned_private_repos"],
       );
@@ -81,8 +99,8 @@ class User {
         "public_repos": publicRepos,
         "followers": followers,
         "following": following,
-        "created_at": createdAt.toIso8601String(),
-        "updated_at": updatedAt.toIso8601String(),
+        "created_at": createdAt?.toIso8601String(),
+        "updated_at": updatedAt?.toIso8601String(),
         "total_private_repos": totalPrivateRepos,
         "owned_private_repos": ownedPrivateRepos,
       };

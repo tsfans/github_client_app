@@ -16,7 +16,7 @@ class Github {
     _options = Options(extra: {"context": context});
   }
 
-  static Dio dio = Dio(BaseOptions(baseUrl: "", headers: {
+  static Dio dio = Dio(BaseOptions(baseUrl: "https://api.github.com", headers: {
     HttpHeaders.acceptHeader:
         "application/vnd.github.squirrel-girl-preview,application/vnd.github.symmetra-preview+json",
   }));
@@ -41,11 +41,11 @@ class Github {
     }
   }
 
-  Future<User> login(String username, String pwd) {
+  Future<User> login(String username, String pwd) async {
     String userIno = '$username:$pwd';
     String encodeUserInfo = base64.encode(utf8.encode(userIno));
     String basic = 'Basic $encodeUserInfo';
-    var rpn = dio.get("/user",
+    var rpn = dio.get('/users/$username',
         options: _options.copyWith(
             headers: {HttpHeaders.authorizationHeader: basic},
             extra: {"noCache": true}));
@@ -55,6 +55,10 @@ class Github {
     Global.netCache.clear();
     Global.profile.token = basic;
     return rpn.then((response) {
+      if (response.statusCode != 200) {
+        throw DioException(
+            requestOptions: RequestOptions(), response: response);
+      }
       return User.fromJson(response.data);
     });
   }
@@ -70,7 +74,12 @@ class Github {
       options: _options,
     );
 
-    return rpn
-        .then((value) => value.data!.map((e) => Repo.fromJson(e)).toList());
+    return rpn.then((response) {
+      if (response.statusCode != 200) {
+        throw DioException(
+            requestOptions: RequestOptions(), response: response);
+      }
+      return response.data!.map((e) => Repo.fromJson(e)).toList();
+    });
   }
 }

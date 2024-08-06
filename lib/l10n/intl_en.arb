@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2024-05-11T11:46:45.590838",
+  "@@last_modified": "2024-05-14T15:55:33.967290",
   "title": "GitHub Client",
   "@title": {
     "description": "app title",
@@ -17,6 +17,13 @@
   "login": "login",
   "@login": {
     "description": "login",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "logining": "logining",
+  "@logining": {
+    "description": "logining",
     "type": "text",
     "placeholders_order": [],
     "placeholders": {}
@@ -49,6 +56,13 @@
     "placeholders_order": [],
     "placeholders": {}
   },
+  "auto": "auto",
+  "@auto": {
+    "description": "auto",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
   "logout": "logout",
   "@logout": {
     "description": "logout",
@@ -73,6 +87,41 @@
   "yes": "yes",
   "@yes": {
     "description": "yes",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "username": "username",
+  "@username": {
+    "description": "username",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "password": "password",
+  "@password": {
+    "description": "password",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "usernameRequired": "usernameRequired",
+  "@usernameRequired": {
+    "description": "usernameRequired",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "passwordRequired": "passwordRequired",
+  "@passwordRequired": {
+    "description": "passwordRequired",
+    "type": "text",
+    "placeholders_order": [],
+    "placeholders": {}
+  },
+  "usernameOrPasswordWrong": "usernameOrPasswordWrong",
+  "@usernameOrPasswordWrong": {
+    "description": "usernameOrPasswordWrong",
     "type": "text",
     "placeholders_order": [],
     "placeholders": {}
